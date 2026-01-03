@@ -100,7 +100,6 @@ foreach (MODELS as $model) {
         $output->writeln("  <success>✓ Success</success>");
         $output->writeln("  Answer: " . $response->answer);
         $successfulModel = $model;
-        break;
     } catch (\Exception $e) {
         $output->writeln("  <error>✗ Failed: " . $e->getMessage() . "</error>");
         $lastError = $e;

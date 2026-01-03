@@ -70,7 +70,6 @@ foreach (MODELS as $model) {
         $output->writeln("  <success>✓ Success</success>");
         $output->writeln("  Date: " . ($response->date ?? '<comment>null</comment>'));
         $successfulModel = $model;
-        break;
     } catch (\Exception $e) {
         $output->writeln("  <error>✗ Failed: " . $e->getMessage() . "</error>");
         $lastError = $e;
