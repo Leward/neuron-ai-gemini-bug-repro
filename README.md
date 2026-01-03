@@ -4,13 +4,15 @@
 
 This project reproduces a protocol incompatibility between the `neuron-ai` library and Google's `gemini-3-flash-preview` experimental model.
 
-## The Bug
+## The Bug (Fixed)
 
-The error occurs because the library uses a payload format that newer Gemini models reject on the `v1beta` endpoint.
+This project originally reproduced protocol incompatibilities between the `neuron-ai` library and Google's newer Gemini models on the `v1beta` endpoint.
 
-1. **Snake vs Camel Case**: The library sends `generation_config` instead of the strictly required `generationConfig`.
-2. **Schema Type Arrays**: The library sends `"type": ["string", "null"]` for nullable fields, while the API strictly requires a single string type (e.g., `"type": "string"`) plus a `"nullable": true` flag.
-3. **Thought Signatures**: Gemini 3 requires returning the `thought_signature` in multi-turn tool conversations, which the library currently omits.
+### Issues That Were Fixed
+
+1. **Schema Type Arrays**: The library was sending `"type": ["string", "null"]` for nullable fields, while the API strictly requires a single string type (e.g., `"type": "string"`) plus a `"nullable": true` flag. This has been fixed to properly support nullable fields.
+
+2. **Tool Calling + Structured Output**: Newer Gemini models now support using tool calling and structured output at the same time. The library has been updated to handle this capability.
 
 ## Setup
 
@@ -52,5 +54,4 @@ Run both tests in sequence:
 php run_all.php
 ```
 
-## Solution / Mitigation
-The library has been updated locally (via the `neuron-ai` link) to support the stricter requirements of newer models. All models listed in `run_all.php` should now pass successfully with both structured output and multi-turn tool use.
+
