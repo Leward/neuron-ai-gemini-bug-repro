@@ -1,5 +1,7 @@
 # Gemini 3 Protocol Bug Reproduction
 
+> **Note:** Most of this repository is AI-generated to help reproduce a bug.
+
 This project reproduces a protocol incompatibility between the `neuron-ai` library and Google's `gemini-3-flash-preview` experimental model.
 
 ## The Bug
